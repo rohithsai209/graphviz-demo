@@ -1,0 +1,32 @@
+<div class="container">
+  <!-- Left Side: Graphviz Container -->
+  <div id="graph" class="graph-container">
+    <!-- The pop-up appears within the container, absolutely positioned -->
+    <div
+      class="popup"
+      *ngIf="popupVisible"
+      [ngStyle]="{'left.px': popupX, 'top.px': popupY}">
+      {{ TagName }} <br>
+      {{ TagDescription }} <br>
+      {{ UoM }}
+    </div>
+  </div>
+
+  <!-- Right Side: Chat Box -->
+  <div class="chat-box">
+    <h3>Chat</h3>
+    <div class="chat-content">
+      <div class="message" *ngFor="let message of messages">
+        {{ message }}
+      </div>
+    </div>
+    <div class="chat-controls">
+      <input type="text"
+             [(ngModel)]="chatInput"
+             placeholder="Type a message..."
+             (keyup.enter)="sendMessage()">
+      <!-- File uploader -->
+      <input type="file" (change)="onFileSelected($event)">
+    </div>
+  </div>
+</div>
